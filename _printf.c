@@ -1,8 +1,8 @@
+#include "main.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include "main.h"
 /**
  * _printf - our own printf
  * @format: string
@@ -23,10 +23,12 @@ int _printf(const char *format, ...)
 			switch (format[i])
 			{
 				case 'c':
-					char c = va_arg(args, char);
+					{
+					char c = va_arg(args, int);
 					write(1, &c, sizeof(char));
 					count++;
 					break;
+					}
 
 			}
 		}
