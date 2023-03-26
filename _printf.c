@@ -42,7 +42,6 @@ int _printf(const char *format, ...)
 					break;
 				case '%':
 					write(1, "%", 1);
-					i++;
 					count++;
 					break;
 				default:
