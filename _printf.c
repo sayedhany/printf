@@ -28,6 +28,8 @@ int _printf(const char *format, ...)
 				case 'c':
 				  c = va_arg(args, int);
 					write(1, &c, sizeof(char));
+					i++;
+					count++;
 					break;
 				case 's':
 					str = va_arg(args, char *);
@@ -36,9 +38,13 @@ int _printf(const char *format, ...)
 						write(1, str, 1);
 						str++;
 					}
+					i++;
+					count++;
 					break;
 				case '%':
 					write(1, "%", 1);
+					i++;
+					count++;
 					break;
 				default:
 					return (-1);
@@ -47,9 +53,9 @@ int _printf(const char *format, ...)
 		else
 		{
 			write(1, &format[i], 1);
+			i++;
+			count++;
 		}
-		i++;
-		count++;
 	}
 	va_end(args);
 	return (count);
