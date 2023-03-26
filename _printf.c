@@ -37,9 +37,9 @@ int _printf(const char *format, ...)
 					{
 						write(1, str, 1);
 						str++;
+						count++;
 					}
 					i++;
-					count++;
 					break;
 				case '%':
 					write(1, "%", 1);
