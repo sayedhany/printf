@@ -48,6 +48,11 @@ int _printf(const char *format, ...)
 				default:
 					return (-1);
 			}
+		} else
+		{
+			write(1, &format[i], 1);
+			i++;
+			count++;
 		}
 	}
 	return (count);
