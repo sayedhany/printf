@@ -16,6 +16,7 @@ int _printf(const char *format, ...)
 	char *str;
 	int inum;
 	char num_str[32];
+	char minus = '-';
 
 	va_start(args, format);
 	if (format == NULL)
@@ -51,6 +52,11 @@ int _printf(const char *format, ...)
 				case 'd':
 				case 'i':
 					inum = va_arg(args, int);
+					if (inum < 0)
+					{
+						inum *= -1;
+						write(1, &minus, 1);
+					}
 					do {
 						num_str[j++] = inum % 10 + '0';
 						inum /= 10;
