@@ -10,10 +10,12 @@
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, count = 0;
+	int i = 0, count = 0, j = 0;
 	va_list args;
 	char c;
 	char *str;
+	int inum;
+	char num_str[32];
 
 	va_start(args, format);
 	if (format == NULL)
@@ -46,11 +48,24 @@ int _printf(const char *format, ...)
 					i++;
 					count++;
 					break;
+				case 'd':
+				case 'i':
+					inum = va_arg(args, int);
+					do {
+						num_str[j++] = inum % 10 + '0';
+						inum /= 10;
+					} while (inum != 0);
+					while (j > 0)
+					{
+						write(1, &num_str[--j], 1);
+					}
+					i++;
+					count++;
+					break;
 				default:
 					return (-1);
 			}
-		} 
-		else
+		} else
 		{
 			write(1, &format[i], 1);
 			i++;
